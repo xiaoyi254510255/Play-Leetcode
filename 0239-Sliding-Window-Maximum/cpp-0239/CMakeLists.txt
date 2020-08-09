@@ -1,7 +1,6 @@
-cmake_minimum_required(VERSION 3.5)
-project(cpp_0239)
+cmake_minimum_required(VERSION 3.16)
+project(0239_Sliding_Window_Maximum)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES main2.cpp)
-add_executable(cpp_0239 ${SOURCE_FILES})
+add_executable(0239_Sliding_Window_Maximum main2.cpp)

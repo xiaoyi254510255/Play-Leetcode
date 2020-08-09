@@ -24,10 +24,9 @@ class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 
-        assert(p != NULL && q != NULL);
+        assert(!p && !q);
 
-        if(root == NULL)
-            return NULL;
+        if(!root) return root;
 
         if(p->val < root->val && q->val < root->val)
             return lowestCommonAncestor(root->left, p, q);

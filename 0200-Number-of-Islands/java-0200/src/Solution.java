@@ -2,7 +2,9 @@
 /// Author : liuyubobobo
 /// Time   : 2017-11-18
 
-/// Floodfill
+/// Floodfill - DFS
+/// Recursion implementation
+///
 /// Time Complexity: O(n*m)
 /// Space Complexity: O(n*m)
 class Solution {

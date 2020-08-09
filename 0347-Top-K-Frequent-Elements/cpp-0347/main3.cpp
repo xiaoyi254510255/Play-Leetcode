@@ -29,16 +29,9 @@ public:
         // 扫描freq,维护当前出现频率最高的k个元素
         // 在优先队列中,按照频率排序,所以数据对是 (频率,元素) 的形式
         priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
-        for(unordered_map<int,int>::iterator iter = freq.begin();
-            iter != freq.end(); iter ++ ){
-            if(pq.size() == k){
-                if(iter->second > pq.top().first){
-                    pq.pop();
-                    pq.push( make_pair(iter->second, iter->first));
-                }
-            }
-            else
-                pq.push(make_pair(iter->second , iter->first));
+        for(const pair<int, int>& p: freq){
+            if(pq.size() == k && p.second > pq.top().first) pq.pop();
+            if(pq.size() < k) pq.push(make_pair(p.second , p.first));
         }
 
         vector<int> res;
@@ -51,16 +44,19 @@ public:
     }
 };
 
+
+void print_vec(const vector<int>& vec){
+    for(int e: vec) cout << e << " "; cout << endl;
+}
+
 int main() {
 
-    int nums[] = {1, 1, 1, 2, 2, 3};
-    vector<int> vec(nums, nums + sizeof(nums)/sizeof(int));
-    int k = 2;
+    vector<int> nums1 = {1, 1, 1, 2, 2, 3};
+    print_vec(Solution().topKFrequent(nums1, 2));
 
-    vector<int> res = Solution().topKFrequent(vec, 2);
-    for( int i = 0 ; i < res.size() ; i ++ )
-        cout<<res[i]<<" ";
-    cout<<endl;
+    vector<int> nums2 = {3, 0, 1, 0};
+    print_vec(Solution().topKFrequent(nums2, 1));
+    // 0
 
     return 0;
 }

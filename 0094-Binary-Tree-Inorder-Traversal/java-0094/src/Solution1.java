@@ -1,4 +1,4 @@
-/// Source : https://leetcode.com/problems/binary-tree-inorder-traversal/solution/
+/// Source : https://leetcode.com/problems/binary-tree-inorder-traversal/
 /// Author : liuyubobobo
 /// Time   : 2017-11-17
 
@@ -9,14 +9,6 @@ import java.util.List;
 // Time Complexity: O(n), n is the node number in the tree
 // Space Complexity: O(h), h is the height of the tree
 public class Solution1 {
-
-    // Definition for a binary tree node.
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
 
     public List<Integer> inorderTraversal(TreeNode root) {
 

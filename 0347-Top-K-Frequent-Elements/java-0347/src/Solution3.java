@@ -4,20 +4,23 @@
 
 import java.util.*;
 import java.util.HashMap;
-import javafx.util.Pair;
 
 /// Priority Queue
 /// Time Complexity: O(nlogn)
 /// Space Complexity: O(n)
 class Solution3 {
 
-    private class PairComparator implements Comparator<Pair<Integer, Integer>>{
+    private class Pair implements Comparable<Pair>{
+        public int num, freq;
+
+        public Pair(int num, int freq){
+            this.num = num;
+            this.freq = freq;
+        }
 
         @Override
-        public int compare(Pair<Integer, Integer> p1, Pair<Integer, Integer> p2){
-            if(p1.getKey() != p2.getKey())
-                return p1.getKey() - p2.getKey();
-            return p1.getValue() - p2.getValue();
+        public int compareTo(Pair another){
+            return this.freq - another.freq;
         }
     }
 
@@ -36,22 +39,16 @@ class Solution3 {
         if(k > freq.size())
             throw new IllegalArgumentException("k should be less than the number of unique numbers in nums");
 
-        PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<Pair<Integer, Integer>>(new PairComparator());
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
         for(Integer num: freq.keySet()){
             int numFreq = freq.get(num);
-            if(pq.size() == k){
-                if(numFreq > pq.peek().getKey()){
-                    pq.poll();
-                    pq.add(new Pair(numFreq, num));
-                }
-            }
-            else
-                pq.add(new Pair(numFreq, num));
+            if(pq.size() == k && numFreq > pq.peek().freq) pq.poll();
+            if(pq.size() < k) pq.add(new Pair(num, numFreq));
         }
 
         ArrayList<Integer> res = new ArrayList<Integer>();
         while(!pq.isEmpty())
-            res.add(pq.poll().getValue());
+            res.add(pq.poll().num);
 
         return res;
     }
